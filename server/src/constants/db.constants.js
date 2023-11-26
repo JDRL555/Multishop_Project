@@ -1,7 +1,7 @@
-export const DB = {
-  user: process.env.POSTGRES_USER,
-  host: process.env.POSTGRES_HOST,
-  database: process.env.POSTGRES_DB,
-  password: process.env.POSTGRES_PASSWORD,
-  port: Number(process.env.POSTGRES_PORT),
+export const ADMIN_DB = {
+  user: process.env.ADMIN_POSTGRES_USER,
+  host: process.env.ADMIN_POSTGRES_HOST,
+  database: process.env.ADMIN_POSTGRES_DB,
+  password: process.env.ADMIN_POSTGRES_PASSWORD,
+  port: Number(process.env.ADMIN_POSTGRES_PORT),
 }

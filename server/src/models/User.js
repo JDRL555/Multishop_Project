@@ -1,19 +1,20 @@
 import { connectToDB } from '../utils/db.js'
+import { ADMIN_DB } from '../constants/db.constants.js'
 
 import { Auth } from './Auth.js'
 
 export class User {
   async getAll() {
-    const client = await connectToDB()
-    const users = await client.query("SELECT * FROM users")
+    const client = await connectToDB(ADMIN_DB)
+    const users = await client.query("SELECT * FROM clients")
     return users.rows  
   }
 
   async getOne({ id }) {
     try {
-      const client = await connectToDB()
+      const client = await connectToDB(ADMIN_DB)
       const userFound = await client.query(
-        "SELECT * FROM users WHERE id = $1",
+        "SELECT * FROM clients WHERE id = $1",
         [id]
       )
       if(userFound.rows.length === 0) {
@@ -38,15 +39,17 @@ export class User {
     }
   }
 
-  async create({ name, email, password }) {
+  async create({ 
+    fullname, phone_contact, phone_message, email, db_username, db_password, db_host, password, cycles 
+  }) {
     try {
       const auth = new Auth()
       const encryptedPassword = await auth.encrypt(password)
       
-      const client = await connectToDB()
+      const client = await connectToDB(ADMIN_DB)
       const createResult = await client.query(
-        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-        [name, email, encryptedPassword]
+        "INSERT INTO clients (fullname, phone_contact, phone_messages, email, db_username, db_password, db_host, password, cycles) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+        [fullname, phone_contact, phone_message, email, db_username, db_password, db_host, encryptedPassword, cycles]
       )
       
       if(createResult.rowCount === 1) {
@@ -78,7 +81,7 @@ export class User {
         return result
       }
 
-      let query = "UPDATE users SET "
+      let query = "UPDATE clients SET "
 
       const valueArray = []
 
@@ -109,7 +112,7 @@ export class User {
 
       query += ` WHERE id = $${counter};`
 
-      const client = await connectToDB() 
+      const client = await connectToDB(ADMIN_DB) 
 
       const results = await client.query(query, valueArray)
 
@@ -143,8 +146,8 @@ export class User {
         return result
       }
 
-      const client = await connectToDB()
-      const deleted = await client.query("DELETE FROM users WHERE id = $1", [id])
+      const client = await connectToDB(ADMIN_DB)
+      const deleted = await client.query("DELETE FROM clients WHERE id = $1", [id])
       
       if(deleted.rowCount === 1) {
         return {

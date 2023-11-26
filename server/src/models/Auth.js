@@ -6,4 +6,8 @@ export class Auth {
     const encrypted = await hash(password, salts)
     return encrypted
   }
+
+  async decrypt(password, encrypted) {
+    return await compare(password, encrypted)
+  }
 }
