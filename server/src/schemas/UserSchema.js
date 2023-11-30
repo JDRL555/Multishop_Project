@@ -5,7 +5,7 @@ import { MESSAGES } from '../constants/schemas.constants.js'
 const userSchema = z.object({
   fullname: z.string(MESSAGES.user.fullname),
   phone_contact: z.string(MESSAGES.user.phone_contact).max(15, MESSAGES.user.phone_contact.max_length),
-  phone_message: z.string(MESSAGES.user.phone_message).max(15, MESSAGES.user.phone_message.max_length),
+  phone_messages: z.string(MESSAGES.user.phone_message).max(15, MESSAGES.user.phone_message.max_length),
   email: z.string(MESSAGES.user.email).email(MESSAGES.user.email.format),
   db_username: z.string(MESSAGES.user.db_username),
   db_password: z.string(MESSAGES.user.db_password),

@@ -10,7 +10,7 @@ userController.getUsers = async (req, res) => {
 
 userController.getUser = async (req, res) => {
   const id = req.params.id
-  const response = await new User().getOne({ id })
+  const response = await new User().getOne(id)
   return res.status(response.status).json(response)
 }
 
@@ -57,7 +57,7 @@ userController.deleteUser = async (req, res) => {
 
   const user = new User()
 
-  const response = await user.delete({ id })
+  const response = await user.delete(id)
 
   return res.status(response.status).json(response)
 }
