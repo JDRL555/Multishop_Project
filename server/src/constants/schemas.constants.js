@@ -56,6 +56,12 @@ export const MESSAGES = {
       positive: {
         message: "La cantidad de ciclos debe ser un entero positivo"
       }
+    },
+    failed_attempts: {
+      invalid_type_error: "Los intentos fallidos deben ser numérico",
+      format: {
+        message: "Los intentos fallidos debe ser un entero"
+      }
     }
   }
 }
