@@ -1,17 +1,22 @@
 import '../styles/Login.css'
 import logo from '../assets/Logo Sistema Multishop.png'
-import Loading from './loading'
+import Loading from './Loading'
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login() {
-
+  const navigate = useNavigate();
   const [show, setShow] = useState(false)
   const login = () => {
     setShow(true)
     setTimeout(() => {
       setShow(false)
+      navigate('/das');
     }, 2000);
   }
+  
+  
   return (  
 
     <div id='completo'>
