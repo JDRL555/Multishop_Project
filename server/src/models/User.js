@@ -35,6 +35,33 @@ export class User {
     }
   }
 
+  async getByFilter(key, value) {
+    try {
+      const client = await connect()
+      const user = await client.user.findFirst({ where: { [key]: value } })
+      if(!user?.id) {
+        return {
+          error: true,
+          status: 404,
+          msg: "Usuario no encontrado"
+        }
+      }
+      return {
+        error: true,
+        status: 200,
+        msg: "Usuario encontrado",
+        user
+      }
+    } catch (error) {
+      console.log(error)
+      return {
+        error: true,
+        status: 400,
+        msg: error
+      }
+    }
+  }
+
   async create(newData) {
     try {
       const encryptedPassword = await encrypt(newData.password)
