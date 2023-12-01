@@ -1,11 +1,3 @@
-body {
-  background: var(--primary);
-  text-align: center;
-  height: 100vh;
-  overflow-y: hidden;
-  
-}
-
 h1 {
   margin-top: 0px;
   color: white;
@@ -35,37 +27,40 @@ input {
 }
 
 #completo {
-  font-size: 19px;
-  width: 100%;
+  margin-top: 30px;
+  animation-name: show;
+  animation-duration: 1.5s;
 }
 
 #todo {
-  /* background:#2b5296; */
+  height: 105vh;
+  padding-top: 50px;
   background: var(--segundary);
   font-size: 19px;
-  margin: 0px;
+  margin-top: 100px;
   border-radius: 20px;
   box-shadow: 0px 0px 5px whitesmoke;
 
 }
 
 #relleno {
-  background: var(--segundary);
   border-radius: 10px;
   /* text-align: center; */
   padding: 20px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
   transition: 1s;
   color: rgb(255, 255, 255);
-  box-shadow: 0px 0px 5px whitesmoke;
+  /* box-shadow: 0px 0px 5px whitesmoke; */
 
 }
 
 #logo{
   width: 80%;
+  background-color: rgba(0, 0, 0, 0.412);
+  border-radius: 10px;
   transition: 1s;
 }
 
@@ -76,29 +71,44 @@ input {
 #boton {
   background: #0000004e;
   color: white;
-  border-color: rgb(45, 44, 44);
-  padding: 5px;
-  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  width: 15rem;
+  padding: 10px;
+  font-size: 18px; 
+  transition: 0.5s;
+  margin-top: 10px;
+}
+
+#boton:hover {
+  box-shadow: 0.5px 0.5px 10px white;
+}
+
+@keyframes show {
+  from {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 100%;
+  }
 }
 
 @media (max-width: 800px){
-  h1 {
-    margin-left: 10px;
-    margin-right: 10px;
+#todo {
+    height: 50vh;
   }
+#logo {
+  width: 60%;
+}
   
 }
 
 
 @media (min-width: 800px){
   
-h1{
-  width: 60%;
-  margin: 40px auto;
-
-}
-
-
 #logo{
   width: 50%;
   transition: 1s;
@@ -108,6 +118,7 @@ h1{
 
 #todo {
   width: 70%;
+  height: 75vh;
   margin: auto;
 }
 

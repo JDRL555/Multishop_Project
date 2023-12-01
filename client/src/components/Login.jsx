@@ -1,27 +1,39 @@
 import '../styles/Login.css'
 import logo from '../assets/Logo Sistema Multishop.png'
+import Loading from './loading'
+import { useState } from "react"
 
 export default function Login() {
+
+  const [show, setShow] = useState(false)
+  const login = () => {
+    setShow(true)
+    setTimeout(() => {
+      setShow(false)
+    }, 2000);
+  }
   return (  
+
     <div id='completo'>
-        <div id='titulo'>
-          <h1>Inicio de sesion</h1>  
-        </div>
+          {
+            show 
+            &&
+            <Loading />
+          }
         
-        <div>
-            <div id='todo'>
-                    <div>
-                        <img id='logo' src={logo}/>
-                    </div>
-                    <form id='relleno'>   
+          <div id='todo'>
+              <img id='logo' src={logo}/>
+              <form id='relleno'>   
                 <label htmlFor="email">Correo Electronico</label>
-                    <input type="email" name='email' id='email'/>    
+                <input type="email" name='email' id='email'/>    
                 <label htmlFor="password">Contraseña</label>
-                    <input type="password" name='password' id='password'/>     
-                    <input type="button" id='boton' value="ingresar" placeholder='ingresar'/>
-                    </form>
-            </div>
-        </div>
+                <input type="password" name='password' id='password'/>
+                <button type='button' id='boton' onClick={login}>
+                  Ingresar
+                </button>     
+              </form>
+          </div>
     </div>
   )
 }
+  

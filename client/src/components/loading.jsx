@@ -1,19 +1,11 @@
-import ReactLoading from "react-loading";
 import '../styles/loading.css'
-import logo from '../assets/Logo Sistema Multishop.png'
 
 
-export default function loading() {
+export default function Loading() {
   return (
-
-    <div>
-      <div>
-    <img id='logo' src={logo}/>
-</div>
-     <p id="load"> cargando pagina </p>
+  <div id='cuadro'>
+    <div id="carga">
     </div>
-
-
-
+  </div>
   )
 }

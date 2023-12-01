@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import Login from "./components/Login";
+import { BrowserRouter, RouterProvider, Route, Routes} from "react-router-dom";
 import './styles/App.css'
+import Login from '../src/components/Login';
 
+export default function Routers() {
 
-
-export default function App() {
-  const [count, setCount] = useState(0)
-  
-  return (
-    <>
-    {/* <Suspense fallback={carga}>
-    </Suspense> */}
-    </>
+  return(
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }

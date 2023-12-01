@@ -1,6 +1,15 @@
 :root {
-  --primary: linear-gradient(#001951,#2b5296);
-  --segundary: linear-gradient(#204485,#2b5296);
+  --primary: linear-gradient(#63a9d7,#2c57a1);
+  --segundary: linear-gradient(#5a9ac2,#2b5296);
+  --gradient: linear-gradient(0deg, #63a9d7 0%,#2c57a1 100%);
+  --tertiary: #848484;
 
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--primary);
+  text-align: center;
+  height: 100vh;
+  overflow-y: hidden; 
 }
