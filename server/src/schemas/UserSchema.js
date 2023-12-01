@@ -12,6 +12,7 @@ const userSchema = z.object({
   db_host: z.string(MESSAGES.user.db_host),
   password: z.string(MESSAGES.user.password).min(8, MESSAGES.user.password.min_length),
   is_enabled: z.boolean(MESSAGES.user.is_enabled).default(true),
+  failed_attempts: z.number(MESSAGES.user.failed_attempts).int(MESSAGES.user.failed_attempts.format).default(0),
   cycles: z.number(MESSAGES.user.cycles).int(MESSAGES.user.cycles.format).positive(MESSAGES.user.cycles.positive)
 })
 

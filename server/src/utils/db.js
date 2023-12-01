@@ -1,11 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 
-export async function connect() {
-  try {
-    const client = new PrismaClient()
-    await client.$connect()
-    return client
-  } catch (error) {
-    throw new Error(error)
-  }
+let client
+
+try {
+  client = new PrismaClient()
+  await client.$connect()
+  console.log("Connected to db")
+} catch (error) {
+  throw new Error(error)
 }
+
+export { client }

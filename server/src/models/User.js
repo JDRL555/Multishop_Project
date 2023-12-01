@@ -1,16 +1,14 @@
-import { connect } from '../utils/db.js'
+import { client } from '../utils/db.js'
 import { encrypt } from '../services/Auth.services.js'
 
 export class User {
   async getAll() {
-    const client = await connect()
     const users = await client.user.findMany()
     return users
   }
 
   async getOne(id) {
     try {
-      const client = await connect()
       const user = await client.user.findFirst({ where: { id: Number(id) } })
       if(!user?.id) {
         return {
@@ -37,7 +35,6 @@ export class User {
 
   async getByFilter(key, value) {
     try {
-      const client = await connect()
       const user = await client.user.findFirst({ where: { [key]: value } })
       if(!user?.id) {
         return {
@@ -66,8 +63,6 @@ export class User {
     try {
       const encryptedPassword = await encrypt(newData.password)
       const encryptedDbPassword = await encrypt(newData.db_password)
-      
-      const client = await connect()
 
       const newUser = await client.user.create({
         data: {
@@ -95,8 +90,6 @@ export class User {
 
   async update({ id, newData }) {
     try {
-      const client = await connect() 
-
       const updated = await client.user.update({
         data: newData,
         where: {
@@ -122,7 +115,6 @@ export class User {
 
   async delete(id) {
     try {
-      const client = await connect()
       const user = await client.user.delete({ where: { id: Number(id) } })
       if(!user?.id) {
         return {
