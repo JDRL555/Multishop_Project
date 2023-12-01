@@ -1,11 +1,13 @@
-import pg from 'pg'
+import { PrismaClient } from '@prisma/client'
 
-export async function connectToDB(DB_config) {
-  try {
-    const connection = new pg.Pool(DB_config)
-    const client = await connection.connect()
-    return client
-  } catch (err) {
-    throw new Error(err)
-  }
+let client
+
+try {
+  client = new PrismaClient()
+  await client.$connect()
+  console.log("Connected to db")
+} catch (error) {
+  throw new Error(error)
 }
+
+export { client }

@@ -1,20 +1,20 @@
 import { User } from '../models/User.js'
 import { validatePartialUser, validateUser } from '../schemas/UserSchema.js'
 
-const userController = {}
+const controller = {}
 
-userController.getUsers = async (req, res) => {
+controller.getUsers = async (req, res) => {
   const users = await new User().getAll()
   return res.json({ users })
 }
 
-userController.getUser = async (req, res) => {
+controller.getUser = async (req, res) => {
   const id = req.params.id
-  const response = await new User().getOne({ id })
+  const response = await new User().getOne(id)
   return res.status(response.status).json(response)
 }
 
-userController.createUser = async (req, res) => {
+controller.createUser = async (req, res) => {
   const data = req.body
 
   const result = validateUser(data)
@@ -33,7 +33,7 @@ userController.createUser = async (req, res) => {
 
   return res.status(response.status).json(response)
 }
-userController.updateUser = async (req, res) => {
+controller.updateUser = async (req, res) => {
   const id = req.params.id
   const newData = req.body
 
@@ -52,14 +52,14 @@ userController.updateUser = async (req, res) => {
 
   return res.status(response.status).json(response)
 }
-userController.deleteUser = async (req, res) => {
+controller.deleteUser = async (req, res) => {
   const id = req.params.id
 
   const user = new User()
 
-  const response = await user.delete({ id })
+  const response = await user.delete(id)
 
   return res.status(response.status).json(response)
 }
 
-export { userController }
+export { controller }

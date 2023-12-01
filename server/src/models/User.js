@@ -1,135 +1,30 @@
-import { connectToDB } from '../utils/db.js'
-import { ADMIN_DB } from '../constants/db.constants.js'
-
-import { Auth } from './Auth.js'
+import { client } from '../utils/db.js'
+import { encrypt } from '../services/Auth.services.js'
 
 export class User {
   async getAll() {
-    const client = await connectToDB(ADMIN_DB)
-    const users = await client.query("SELECT * FROM clients")
-    return users.rows  
+    const users = await client.user.findMany()
+    return users
   }
 
-  async getOne({ id }) {
+  async getOne(id) {
     try {
-      const client = await connectToDB(ADMIN_DB)
-      const userFound = await client.query(
-        "SELECT * FROM clients WHERE id = $1",
-        [id]
-      )
-      if(userFound.rows.length === 0) {
+      const user = await client.user.findFirst({ where: { id: Number(id) } })
+      if(!user?.id) {
         return {
           error: true,
           status: 404,
-          msg: "User not found"
+          msg: "Usuario no encontrado"
         }
       }
       return {
         error: true,
         status: 200,
-        msg: "User found",
-        user: userFound.rows[0]
+        msg: "Usuario encontrado",
+        user
       }
     } catch (error) {
-      return {
-        error: true,
-        status: 400,
-        msg: error?.detail || error
-      }
-    }
-  }
-
-  async create({ 
-    fullname, phone_contact, phone_message, email, db_username, db_password, db_host, password, cycles 
-  }) {
-    try {
-      const auth = new Auth()
-      const encryptedPassword = await auth.encrypt(password)
-      
-      const client = await connectToDB(ADMIN_DB)
-      const createResult = await client.query(
-        "INSERT INTO clients (fullname, phone_contact, phone_messages, email, db_username, db_password, db_host, password, cycles) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
-        [fullname, phone_contact, phone_message, email, db_username, db_password, db_host, encryptedPassword, cycles]
-      )
-      
-      if(createResult.rowCount === 1) {
-        return { 
-          error: false,
-          status: 201,
-          msg: "User created successfully!" 
-        }
-      } else {
-        return { 
-          error: true,
-          status: 400,
-          msg: "Something went wrong creating the user..." 
-        }
-      }
-    } catch (error) {
-      return {
-        error: true,
-        status: 400,
-        msg: error?.detail || error
-      }
-    }
-  }
-
-  async update({ id, newData }) {
-    try {
-      const result = await this.getOne(id)
-      if(!result?.user) {
-        return result
-      }
-
-      let query = "UPDATE clients SET "
-
-      const valueArray = []
-
-      for(const [key, value] of Object.entries(newData)) {
-        query += `${key} = $`
-        valueArray.push(value)
-      }
-
-      valueArray.push(id)
-
-      let counter = 1
-      let matches = query.match(/\$/g).length
-
-      const array = query.split("")
-
-      array.map((letter, i) => {
-        if(letter === "$") {
-          if(counter !== matches) {
-            array[i] = `$${counter}, `
-          } else {
-            array[i] = `$${counter}`
-          }
-          counter++
-        }
-      })
-      
-      query = array.join("")
-
-      query += ` WHERE id = $${counter};`
-
-      const client = await connectToDB(ADMIN_DB) 
-
-      const results = await client.query(query, valueArray)
-
-      if(results.rowCount === 1) {
-        return {
-          error: false,
-          status: 200,
-          msg: "Updated successfully!"
-        }
-      } else {
-        return {
-          error: true,
-          status: 500,
-          msg: "Something went wrong..."
-        }
-      }
-    } catch (error) {
+      console.log(error)
       return {
         error: true,
         status: 400,
@@ -138,32 +33,103 @@ export class User {
     }
   }
 
-  async delete({ id }) {
+  async getByFilter(key, value) {
     try {
-      const result = await this.getOne(id)
-      
-      if(!result?.user) {
-        return result
-      }
-
-      const client = await connectToDB(ADMIN_DB)
-      const deleted = await client.query("DELETE FROM clients WHERE id = $1", [id])
-      
-      if(deleted.rowCount === 1) {
-        return {
-          error: false,
-          status: 200,
-          msg: "Deleted successfully!"
-        }
-      } else {
+      const user = await client.user.findFirst({ where: { [key]: value } })
+      if(!user?.id) {
         return {
           error: true,
-          status: 500,
-          msg: "Something went wrong..."
+          status: 404,
+          msg: "Usuario no encontrado"
         }
       }
-    
+      return {
+        error: true,
+        status: 200,
+        msg: "Usuario encontrado",
+        user
+      }
     } catch (error) {
+      console.log(error)
+      return {
+        error: true,
+        status: 400,
+        msg: error
+      }
+    }
+  }
+
+  async create(newData) {
+    try {
+      const encryptedPassword = await encrypt(newData.password)
+      const encryptedDbPassword = await encrypt(newData.db_password)
+
+      const newUser = await client.user.create({
+        data: {
+          ...newData, 
+          password: encryptedPassword, 
+          db_password: encryptedDbPassword
+        }
+      })
+      
+      return { 
+        error: false,
+        status: 201,
+        msg: "Usuario creado exitósamente!",
+        user: newUser 
+      }
+    } catch (error) {
+      console.log(error)
+      return {
+        error: true,
+        status: 400,
+        msg: error
+      }
+    }
+  }
+
+  async update({ id, newData }) {
+    try {
+      const updated = await client.user.update({
+        data: newData,
+        where: {
+          id: Number(id)
+        }
+      })
+
+      return {
+        error: false,
+        status: 200,
+        msg: "Usuario actualizado exitosamente!",
+        user: updated
+      }
+    } catch (error) {
+      console.log(error)
+      return {
+        error: true,
+        status: 400,
+        msg: "Usuario no encontrado"
+      }
+    }
+  }
+
+  async delete(id) {
+    try {
+      const user = await client.user.delete({ where: { id: Number(id) } })
+      if(!user?.id) {
+        return {
+          error: true,
+          status: 404,
+          msg: "Usuario no encontrado"
+        }
+      }
+      return {
+        error: true,
+        status: 200,
+        msg: "Usuario eliminado exitosamente"
+      }
+    } catch (error) {
+      console.log(error)
       return {
         error: true,
         status: 400,
