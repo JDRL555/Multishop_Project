@@ -1,5 +1,6 @@
 #cuadro {
   position:absolute;
+  height: 105vh;
   display: flex;
   justify-content: center;
   align-items: center;
