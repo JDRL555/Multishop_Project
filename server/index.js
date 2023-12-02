@@ -12,10 +12,11 @@ import { CORS_CONFIG } from './src/config/cors.config.js'
 
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
 app.use(morgan("dev"))
 app.use(cors(CORS_CONFIG))
-
-app.use(express.json())
 
 app.use("/users", userRouter)
 app.use("/auth", authRouter)

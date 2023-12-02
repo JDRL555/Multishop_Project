@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { BrowserRouter, RouterProvider, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 import './styles/App.css'
 
@@ -15,8 +14,7 @@ export default function Routers() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="*" element={<Error />} />
-          <Route path="/das" element={<Dashboard />} />
-
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

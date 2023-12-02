@@ -16,7 +16,7 @@ export async function login(email, password) {
   const user = new User()
   const userFound = await user.getByFilter("email", email)
 
-  if(userFound) {
+  if(!userFound.error) {
     const isValidPassword = await decrypt(password, userFound.user.password)
     if (isValidPassword) {
       if(userFound.user.failed_attempts === 4) {
