@@ -1,4 +1,4 @@
-import { login as logUser } from '../services/Auth.services.js'
+import { login as logUser, checkToken } from '../services/Auth.services.js'
 import { validateAuth } from '../schemas/AuthSchema.js'
 
 const controller = {}
@@ -40,6 +40,18 @@ controller.login = async (req, res) => {
       status: 400,
       msg: error
     })
+  }
+}
+
+controller.checkToken = async (req, res) => {
+  try {
+    const token = req.query.token
+    if(!token) return res.status(400).json({ error: true, message: "El token es requerido" })
+    const response = await checkToken(token)
+    if(response.error) return res.status(400).json(response)
+    return res.status(200).json(response)
+  } catch (error) {
+    
   }
 }
 

@@ -1,6 +1,6 @@
 import { genSalt, hash, compare } from 'bcrypt'
 import { User } from '../models/User.js'
-import { MAXIMUM_FAILED_ATTEMPTS } from '../constants/auth.constants.js'
+import { MAXIMUM_FAILED_ATTEMPTS, SECRET_KEY } from '../constants/auth.constants.js'
 import jwt from 'jsonwebtoken'
 
 export async function encrypt(password) {
@@ -72,6 +72,26 @@ export async function login(email, password) {
     return {
       error: true,
       message: "Correo Incorrecto",
+    }
+  }
+}
+
+export async function checkToken(token) {
+  try {
+    const valid = jwt.verify(token, SECRET_KEY);
+    if(!valid?.user){
+      return {
+        error: true,
+        message: 'El token no es valido'
+      }
+    } else return {
+      error: false,
+      message: 'Token valido'
+    } 
+  } catch (error) {
+    return {
+      error: true,
+      message: 'El token no es valido'
     }
   }
 }
