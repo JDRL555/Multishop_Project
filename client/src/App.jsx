@@ -1,16 +1,25 @@
-import { useState } from 'react'
-import Login from "./components/Login";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { CookiesProvider } from 'react-cookie'
+
 import './styles/App.css'
 
-export default function App() {
-  const [count, setCount] = useState(0)
+import LoginPage from '../src/pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage'
+import DashboardPage from './pages/DashboardPage'
 
-  return (
-    <>
-    <Login />
-    </>
+export default function Routers() {
+
+  return(
+    <div>
+      <CookiesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Routes>
+        </BrowserRouter>
+      </CookiesProvider>
+    </div>
   )
 }
-

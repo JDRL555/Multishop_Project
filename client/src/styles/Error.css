@@ -1,0 +1,15 @@
+.error_page_sty {
+  margin-top: 0px;
+  color: white;
+  background: var(--primary);
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 90px;
+  margin-right: 90px;
+  transition: 1s;
+  padding: 10px;
+}
+
+.link {
+  color: white;
+}
