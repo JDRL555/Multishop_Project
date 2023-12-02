@@ -7,6 +7,8 @@ import LoginPage from '../src/pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage'
 import DashboardPage from './pages/DashboardPage'
 
+import Protected from './components/Protected'
+
 export default function Routers() {
 
   return(
@@ -16,7 +18,9 @@ export default function Routers() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route element={<Protected />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </CookiesProvider>
