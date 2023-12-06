@@ -21,6 +21,7 @@ model User {
   db_host String @db.VarChar(255)
   password String @db.VarChar(500)
   failed_attempts Int @default(0)
+  is_admin Boolean @default(false)
   is_enabled Boolean @default(true)
   cycles Int
   created_at DateTime @default(now())
