@@ -1,8 +1,9 @@
 :root {
-  --primary: linear-gradient(#63a9d7,#2c57a1);
-  --segundary: linear-gradient(#5a9ac2,#2b5296);
+  --primary: white;
+  --segundary: white;
   --gradient: linear-gradient(0deg, #63a9d7 0%,#2c57a1 100%);
   --tertiary: #848484;
+  --grey: #000000b3;
 
   font-family: Arial, Helvetica, sans-serif;
 }
