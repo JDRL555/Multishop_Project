@@ -1,3 +1,7 @@
+body {
+  padding-top: 40px;
+}
+
 h1 {
   margin-top: 0px;
   color: white;
@@ -10,17 +14,19 @@ h1 {
   padding: 10px;
 }
 
-label {
-  margin: 1px; 
+label { 
   text-align: left;
   color: rgb(56, 56, 56);
-  /* width: 100%; */
   height: 10px;
   
+  margin: 5px;
+  width: 80%;
+  padding: 5px;
+  transition: 1s;
 }
 
 input {
-  margin: 10px;
+  margin: 5px;
   width: 80%;
   padding: 5px;
   outline: none;
@@ -29,10 +35,22 @@ input {
 
 input:focus {
   box-shadow: 0px 5px 1px var(--grey);
+  border: none;
+  transition: .3s;
 }
 
-#completo {
-  margin-top: 30px;
+input:focus {
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.493);
+}
+
+#todo {
+  width: 70%;
+  margin: auto;
+  padding: 25px 0;
+  background: var(--segundary);
+  font-size: 19px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px whitesmoke;
   animation-name: show;
   animation-duration: 1.5s;
 }
@@ -49,7 +67,6 @@ input:focus {
 
 #relleno {
   border-radius: 10px;
-  /* text-align: center; */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -64,12 +81,9 @@ input:focus {
 #logo{
   width: 80%;
   background-color: var(--grey);
+  background-color: rgba(0, 0, 0, 0.412);
   border-radius: 10px;
   transition: 1s;
-}
-
-#titulo {
-  margin-top: 100px;
 }
 
 #boton {
@@ -91,6 +105,49 @@ input:focus {
   color: var(--grey);
 }
 
+.show {
+  visibility: visible;
+  opacity: 100;
+  animation-name: loading;
+  animation-duration: .5s;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  animation-name: loaded;
+  animation-duration: .5s;
+}
+
+#errores p {
+  margin: 5px;
+  color: rgb(247, 90, 90);
+}
+
+@keyframes loading {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+    opacity: 100%;
+  }
+}
+
+@keyframes loaded {
+  from {
+    visibility: visible;
+    opacity: 100%;
+  }
+
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 @keyframes show {
   from {
     transform: translateY(200px);
@@ -103,16 +160,11 @@ input:focus {
   }
 }
 
-@media (max-width: 800px){
-#todo {
-    height: 50vh;
+@media (max-width: 950px) {
+  #logo {
+    width: 70%;
   }
-#logo {
-  width: 60%;
 }
-  
-}
-
 
 @media (min-width: 800px){
   
@@ -138,5 +190,4 @@ input:focus {
     height: 80%;
     padding: 5px;
   }
-
 }

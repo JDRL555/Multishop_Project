@@ -17,3 +17,13 @@ export async function authUser(email, password) {
   const response = await result.json()
   return response 
 }
+
+export async function checkToken(token) {
+  try {
+    const result = await fetch(API.API_URL + API.AUTH_ROUTE + `?token=${token}`)
+    const response = await result.json()
+    return response.error
+  } catch (error) {
+    return false
+  }
+}

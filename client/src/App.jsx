@@ -1,22 +1,29 @@
 import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { CookiesProvider } from 'react-cookie'
 
 import './styles/App.css'
 
-import Login from '../src/components/Login';
-import Error from './components/Error-page'
-import Dashboard from './components/Dashboard'
+import LoginPage from '../src/pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage'
+import DashboardPage from './pages/DashboardPage'
+
+import Protected from './components/Protected'
 
 export default function Routers() {
 
   return(
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
+      <CookiesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route element={<Protected />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CookiesProvider>
     </div>
   )
 }

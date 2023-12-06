@@ -44,7 +44,7 @@ export class User {
         }
       }
       return {
-        error: true,
+        error: false,
         status: 200,
         msg: "Usuario encontrado",
         user
