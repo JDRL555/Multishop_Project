@@ -1,6 +1,6 @@
 .error_page_sty {
   margin-top: 0px;
-  color: white;
+  color: rgb(0, 0, 0);
   background: var(--primary);
   border-radius: 10px;
   text-align: center;
@@ -10,6 +10,10 @@
   padding: 10px;
 }
 
+h1 {
+  color:black ;
+}
+
 .link {
-  color: white;
+  color: rgb(255, 255, 255);
 }
