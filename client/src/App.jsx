@@ -19,8 +19,8 @@ export default function Routers() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
-              <Route path="/admin" element={<AdminPage />} />
             <Route element={<Protected />}>
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
             </Route>
           </Routes>
