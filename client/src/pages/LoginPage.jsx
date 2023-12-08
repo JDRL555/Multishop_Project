@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
 import { authUser } from "../services/api.services";
 import Login from '../components/Login'
-import Loading from '../components/Loading'
+import Loading from "../components/Loading";
 import '../styles/Login.css'
 
 export default function LoginPage() {
@@ -39,9 +39,9 @@ export default function LoginPage() {
   }
   return (
     <>
-      <div className={show}>
-        <Loading  />
-      </div>
+      <Loading 
+        show={show}
+      />
       <Login 
         onSubmit={login}
         setEmail={setEmail}
