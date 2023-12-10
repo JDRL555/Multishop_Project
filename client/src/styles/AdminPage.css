@@ -1,33 +1,4 @@
-#modal {
-  background: rgba(0, 0, 0, 0.692);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
 
-#Create {
-  background: white;
-  align-items: center;
-  width: 50%;
-}
-
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  display: flex;
-
-}
-/* 
 #div_fondo_muestra {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -58,7 +29,7 @@ form {
   border-radius: 50px;
   width: 50px;
   height: 50px; 
-  background-color: rgb(136, 136, 136);
+  background-color: #5a9ac2;
   border: none; 
 }
 #buton_crear {
@@ -86,20 +57,19 @@ form {
 #tabla {
   border-radius: 15px;
   background-color: aliceblue;
-  display: grid;
-  flex-direction: column;
-  text-align: center;
   padding: 10px;
-  
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 
 #tabla_label {
   color: rgb(56, 56, 56);
   display: flex;
-  text-align: center;
+  text-align: left;
   flex-direction: column;
-
 }
 
 #logo_barra {
@@ -107,4 +77,17 @@ form {
   display: flex;
   position: absolute;
   height: auto;
-} */
+
+}
+
+#div_fondo {
+  width: 60%;
+  position: absolute;
+}
+
+input {
+  width: auto;
+}
+
+
+

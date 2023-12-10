@@ -1,6 +1,6 @@
 import React, { useState }  from 'react'
 import Modal from './Modal'
-import "../styles/Modal.css"
+// import "../styles/Modal.css"
 
 
 export default function Delete({ setIsDeleteOpen }) {
@@ -14,8 +14,8 @@ export default function Delete({ setIsDeleteOpen }) {
               
               <p>Quieres Borrar?</p>
 
-              <button type='button'>Borrar</button>      
-              <button type="button" onClick={() => setIsDeleteOpen('hide')}>Cancelar</button>
+              <button id='boton_edit_delet' type='button'>Borrar</button>      
+              <button id='boton_edit_delet' type="button" onClick={() => setIsDeleteOpen('hide')}>Cancelar</button>
             </form>
           </div>
         </Modal>
