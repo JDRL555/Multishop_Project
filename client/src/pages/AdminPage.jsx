@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
+import Navbar from '../components/Navbar'
 import Create from "../components/Create";
 import Reading from "../components/Reading";
 import Delete from "../components/Delete";
-import Show from "../components/Show";
 import Modal from "../components/Modal";
-import logo from "../assets/Logo Sistema Multishop.png";
 
-import "../styles/Modal.css";
 import "../styles/AdminPage.css";
 
 export default function AdminPage() {
@@ -60,7 +59,7 @@ export default function AdminPage() {
       Correo: "john@gmail.com",
       Ciclos: "3",
     },
-  ];
+  ]; // Esto separarlo en un archivo e importarlo aqui
 
   const [isCreateOpen, setIsCreateOpen] = useState("hide");
   const [isReadOpen, setIsReadOpen] = useState("hide");
@@ -68,14 +67,10 @@ export default function AdminPage() {
 
   return (
     <>
-      <div id="barra_de_navegacion">
-        <img id="logo_barra" src={logo} />
-        <button type="button" id="circulo_nav"></button>
-      </div>
-
-      <div id="div_fondo_muestra">
-        {datos_base.map((datos_base) => (
-          <div>
+      <Navbar />
+      <div id="div_fondo_muestra"> { /* Esto separarlo en un componente */ }
+        {datos_base.map((datos_base, index) => (
+          <div key={index}>
             <p>Nombre completo:{datos_base.NombreCompleto}</p>
             <p>Numero de contacto:{datos_base.NumeroDeContacto}</p>
             <p>Numero de mensaje:{datos_base.NumeroDeMensaje}</p>

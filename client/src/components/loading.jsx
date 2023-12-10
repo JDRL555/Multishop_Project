@@ -1,6 +1,6 @@
-import React from 'react';
 import ReactLoading from 'react-loading';
 import Modal from './Modal'
+
 
 export default function Loading ({ show }) {
   return (

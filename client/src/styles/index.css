@@ -16,3 +16,41 @@ body {
   text-align: center;
   overflow-y: hidden; 
 }
+
+@keyframes loading {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+    opacity: 100%;
+  }
+}
+
+@keyframes loaded {
+  from {
+    visibility: visible;
+    opacity: 100%;
+  }
+
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.show {
+  visibility: visible;
+  opacity: 100;
+  animation-name: loading;
+  animation-duration: .5s;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  animation-name: loaded;
+  animation-duration: .5s;
+}
