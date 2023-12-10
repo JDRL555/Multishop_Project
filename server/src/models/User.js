@@ -35,13 +35,13 @@ export class User {
     }
   }
 
-  async getByFilter(key, value) {
+  async getByEmail(value) {
     try {
       const users = await client.query(
-        "SELECT * FROM users WHERE $1 = $2",
-        [key, value]
+        "SELECT * FROM users WHERE email = $1",
+        [value]
       )
-      if(!users.rows.length === 0) {
+      if(users.rows.length === 0) {
         return {
           error: true,
           status: 404,
@@ -52,7 +52,7 @@ export class User {
         error: false,
         status: 200,
         msg: "Usuario encontrado",
-        user: users
+        user: users.rows[0]
       }
     } catch (error) {
       console.log(error)
@@ -137,11 +137,14 @@ export class User {
 
       const results = await client.query(query, valueArray)
 
+      const { user } = await this.getOne(id)
+
       if(results.rowCount === 1) {
         return {
           error: false,
           status: 200,
-          msg: "Updated successfully!"
+          msg: "Updated successfully!",
+          user
         }
       } else {
         return {
