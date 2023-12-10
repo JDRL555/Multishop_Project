@@ -1,0 +1,110 @@
+#modal {
+  background: rgba(0, 0, 0, 0.692);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#Create {
+  background: white;
+  align-items: center;
+  width: 50%;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+
+}
+/* 
+#div_fondo_muestra {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 20px;
+}
+
+#div_fondo_completo {
+  background: rgb(206, 206, 206);
+  border-radius: 15px;
+  padding: 5px;
+  box-shadow: 0px 0px 5px var(--grey); 
+}
+
+#barra_de_navegacion {
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  text-align: right;
+}
+
+#circulo_nav {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px; 
+  background-color: rgb(136, 136, 136);
+  border: none; 
+}
+#buton_crear {
+  background-color: rgb(255, 255, 255) ;
+  box-shadow: 0px 0px 1px black;
+  padding: 5px;
+  margin: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  
+}
+
+#boton_edit_delet {
+  background-color: rgb(255, 255, 255) ;
+  box-shadow: 0px 0px 1px black;
+  padding: 5px;
+  margin: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+
+#tabla {
+  border-radius: 15px;
+  background-color: aliceblue;
+  display: grid;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px;
+  
+}
+
+
+#tabla_label {
+  color: rgb(56, 56, 56);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+}
+
+#logo_barra {
+  width: 200px;
+  display: flex;
+  position: absolute;
+  height: auto;
+} */

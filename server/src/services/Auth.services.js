@@ -41,7 +41,7 @@ async function checkFailedAttempts(userFound) {
 
 export async function login(email, password) {
   const user = new User()
-  const userFound = await user.getByFilter("email", email)
+  const userFound = await user.getByEmail(email)
 
   if(!userFound.error) {
     const result = await checkFailedAttempts(userFound.user)

@@ -10,18 +10,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Sales_master {
+  id Int @id @default(autoincrement()) 
+  date DateTime
+  invoice_number String @db.VarChar(15)
+  client_name String @db.VarChar(240)
+  total Decimal @db.Decimal(25, 2)
+  cash Decimal @db.Decimal(25, 2) @default(0)
+  cheque Decimal @db.Decimal(25, 2) @default(0)
+  credit_card Decimal @db.Decimal(25, 2) @default(0)
+  debit_card Decimal @db.Decimal(25, 2) @default(0)
+  ticket Decimal @db.Decimal(25, 2) @default(0)
+  deposit Decimal @db.Decimal(25, 2) @default(0)
+  credit Decimal @db.Decimal(25, 2) @default(0)
+  dolars Decimal @db.Decimal(25, 2) @default(0)
+  pesos Decimal @db.Decimal(25, 2) @default(0)
+  euros Decimal @db.Decimal(25, 2) @default(0)
+  rate Decimal @db.Decimal(25, 2) @default(0)
+  cashier String @db.VarChar(15)
+  user String @db.VarChar(15)
+  company String @db.VarChar(15)
+  sales Sales_details[]
+}
+
+model Sales_details {
+  id Int @id @default(autoincrement()) 
+  sales_master_id Int
+  sales_master Sales_master @relation(fields: [sales_master_id], references:[id])
+  date DateTime
+  product_code String @db.VarChar(30)
+  product_name String @db.VarChar(240)
+  amount_sold Decimal @db.Decimal(25, 2) 
+  product_price Decimal @db.Decimal(30, 2) 
+  product_cost Decimal @db.Decimal(30, 2) 
+  cashier String @db.VarChar(15)
+  user String @db.VarChar(15)
+  company String @db.VarChar(15)
+}
+
+model Historial_crm {
   id Int @id @default(autoincrement())
-  fullname String @db.VarChar(100)
-  phone_contact String
-  phone_messages String
-  email String @db.VarChar(255) @unique
-  db_username String @db.VarChar(255)
-  db_password String @db.VarChar(255)
-  db_host String @db.VarChar(255)
-  password String @db.VarChar(500)
-  failed_attempts Int @default(0)
-  is_enabled Boolean @default(true)
-  cycles Int
-  created_at DateTime @default(now())
+  date DateTime
+  total Int
+  frequent Int
+  news Int
 }

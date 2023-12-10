@@ -1,7 +1,7 @@
 :root {
-  --primary: white;
-  --segundary: white;
-  --gradient: linear-gradient(0deg, #63a9d7 0%,#2c57a1 100%);
+  --primary: #5a9ac2;
+  --segundary: #63a9d7;
+  --gradient: linear-gradient(0deg, #63a9d7 0%,#5a9ac2 100%);
   --tertiary: #848484;
   --grey: #000000b3;
 
@@ -9,8 +9,48 @@
 }
 
 body {
-  background: var(--primary);
+  background: url("../../public/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 102% 50rem;
+  background-position: -15px -70px;
   text-align: center;
-  height: 100vh;
   overflow-y: hidden; 
+}
+
+@keyframes loading {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+    opacity: 100%;
+  }
+}
+
+@keyframes loaded {
+  from {
+    visibility: visible;
+    opacity: 100%;
+  }
+
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.show {
+  visibility: visible;
+  opacity: 100;
+  animation-name: loading;
+  animation-duration: .5s;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  animation-name: loaded;
+  animation-duration: .5s;
 }
