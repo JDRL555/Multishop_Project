@@ -12,6 +12,32 @@
   
 }
 
+#tabla_delet{
+  border-radius: 15px;
+  background-color: aliceblue;
+  align-items: center;
+}
+
+#boton_delet {
+  background-color: rgb(255, 255, 255) ;
+  box-shadow: 0px 0px 1px black;
+  padding: 5px;
+  margin: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+#boton_edit_delet {
+  background-color: rgb(255, 255, 255) ;
+  box-shadow: 0px 0px 1px black;
+  padding: 5px;
+  margin: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
 #Create {
   background: white;
   align-items: center;
@@ -27,6 +53,31 @@ form {
   display: flex;
 
 }
+
+#tabla {
+  border-radius: 15px;
+  background-color: aliceblue;
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+#div_fondo {
+  width: 60%;
+  position: absolute;
+}
+
+
+#tabla_label {
+  color: rgb(56, 56, 56);
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+}
+
+
 /* 
 #div_fondo_muestra {
   display: grid;

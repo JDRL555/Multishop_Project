@@ -13,8 +13,7 @@ body {
   background-repeat: no-repeat;
   background-size: 102% 50rem;
   background-position: -15px -70px;
-  text-align: center;
-  overflow-y: hidden; 
+  text-align: center; 
 }
 
 @keyframes loading {
