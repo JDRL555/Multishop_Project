@@ -7,6 +7,7 @@ import LoginPage from '../src/pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage'
 import DashboardPage from './pages/DashboardPage'
 import AdminPage from './pages/AdminPage'
+import prueba from './components/prueba'
 
 import Protected from './components/Protected'
 
@@ -18,6 +19,7 @@ export default function Routers() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LoginPage />} />
+              <Route path="/grafico" element={<prueba />} />
             <Route path="*" element={<NotFoundPage />} />
             <Route element={<Protected />}>
               <Route path="/admin" element={<AdminPage />} />
