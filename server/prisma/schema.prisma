@@ -14,6 +14,7 @@ model Sales_master {
   id Int @id @default(autoincrement()) 
   date DateTime
   invoice_number String @db.VarChar(15)
+  client_code String @db.VarChar(15)
   client_name String @db.VarChar(240)
   total Decimal @db.Decimal(25, 2)
   cash Decimal @db.Decimal(25, 2) @default(0)
@@ -28,23 +29,21 @@ model Sales_master {
   euros Decimal @db.Decimal(25, 2) @default(0)
   rate Decimal @db.Decimal(25, 2) @default(0)
   cashier String @db.VarChar(15)
-  user String @db.VarChar(15)
+  username String @db.VarChar(15)
   company String @db.VarChar(15)
-  sales Sales_details[]
 }
 
 model Sales_details {
   id Int @id @default(autoincrement()) 
-  sales_master_id Int
-  sales_master Sales_master @relation(fields: [sales_master_id], references:[id])
   date DateTime
+  invoice_number String @db.VarChar(15)
   product_code String @db.VarChar(30)
   product_name String @db.VarChar(240)
   amount_sold Decimal @db.Decimal(25, 2) 
   product_price Decimal @db.Decimal(30, 2) 
   product_cost Decimal @db.Decimal(30, 2) 
   cashier String @db.VarChar(15)
-  user String @db.VarChar(15)
+  username String @db.VarChar(15)
   company String @db.VarChar(15)
 }
 
