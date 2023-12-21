@@ -14,7 +14,7 @@ export default function AdminPage() {
     <>
       <Navbar />
       <Users/>
-      <button id={styles.buton_crear} onClick={() => setIsCreateOpen("show")}>
+      <button id={styles.btn_create} onClick={() => setIsCreateOpen("show")}>
         Crear
       </button>
       <Modal show={isCreateOpen}>

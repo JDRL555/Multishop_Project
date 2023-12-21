@@ -6,15 +6,21 @@
 }
 
 
-#buton_crear {
-  background-color: rgb(255, 255, 255) ;
-  box-shadow: 0px 0px 1px black;
-  padding: 5px;
-  margin: 10px;
+#btn_create {
+  background-color: rgb(255, 255, 255);
+  width: 30%;
+  padding: 10px;
+  margin: 10px 0;
   font-size: 15px;
   border: none;
   border-radius: 10px;
-  
+  cursor: pointer;
+  transition: .3s;
+}
+
+#btn_create:hover {
+  background-color: var(--primary);
+  color: white;
 }
 
 
