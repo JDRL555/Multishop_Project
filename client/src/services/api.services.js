@@ -6,6 +6,18 @@ export async function getUsers() {
   return data
 }
 
+export async function createUser(user) {
+  const result = await fetch(API.API_URL + API.USERS_ROUTE, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+  const response = await result.json()
+  return response
+}
+
 export async function authUser(email, password) {
   const result = await fetch(API.API_URL + API.AUTH_ROUTE, {
     method:"POST",
