@@ -1,12 +1,14 @@
 .form {
-  display: grid;
-  grid-template-columns: 50% 50%;
   text-align: center;
   border-radius: 15px;
   background-color: aliceblue;
   padding: 10px;
   margin: 10px;
   width: 100%;
+}
+
+.container_inputs {
+  display: flex;
 }
 
 .delete {
@@ -20,7 +22,7 @@
 }
 
 .container {
-  width: 60%;
+  width: 80%;
   position: absolute;
 }
 
@@ -64,4 +66,32 @@
 .btn:hover {
   background-color: var(--primary);
   color: white;
+}
+
+.error {
+  text-align: left;
+  color: var(--error);
+  font-size: 12px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+
+  .form {
+    margin: auto;
+    width: 90%;
+    height: 30rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .input {
+    width: 90%;
+  }
+
+  .container_inputs {
+    display: block;
+  }
 }

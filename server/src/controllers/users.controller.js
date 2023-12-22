@@ -20,10 +20,15 @@ controller.createUser = async (req, res) => {
   const result = validateUser(data)
 
   if(result.error) {
+    const messages = {}
+    JSON.parse(result.error.message)
+      .forEach(result => { 
+        messages[result.path[0]] = result.message 
+      })
     return res.status(400).json({
       error: true,
       status: 400,
-      msg: JSON.parse(result.error.message).map(result => result.message)
+      msg: messages
     })
   }
 

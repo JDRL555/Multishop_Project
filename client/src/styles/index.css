@@ -4,6 +4,7 @@
   --gradient: linear-gradient(0deg, #63a9d7 0%,#5a9ac2 100%);
   --tertiary: #848484;
   --grey: #000000b3;
+  --error: #f75a5a;
 
   font-family: Arial, Helvetica, sans-serif;
 }
